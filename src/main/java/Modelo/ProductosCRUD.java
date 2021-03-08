@@ -37,7 +37,7 @@ public class ProductosCRUD {
         return filasAfectadas;      
     }
 
-    public static int actualizaProducto() {
+    public static int actualizaProducto2() {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("com.mycompany_ProductosCRUDUpdate_war_1.0-SNAPSHOTPU");
         EntityManager manager = factory.createEntityManager();
         String sql = "UPDATE Productos p SET p.nombre = :nombre, p.imagen = :imagen, p.categoria = :categoria, p.precio = :precio WHERE p.id = 13";
@@ -53,7 +53,7 @@ public class ProductosCRUD {
         return filasAfectadas;      
     }
     
-    public static int actualizaProductoConParametros(Productos miProducto) {
+    public static int actualizaProducto(Productos miProducto) {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("com.mycompany_ProductosCRUDUpdate_war_1.0-SNAPSHOTPU");
         EntityManager manager = factory.createEntityManager();
         String sql = "UPDATE Productos p SET p.nombre = :nombre, p.imagen = :imagen, p.categoria = :categoria, p.precio = :precio WHERE p.id = :id";
@@ -88,6 +88,18 @@ public class ProductosCRUD {
         manager.getTransaction().commit();
         return filasAfectadas;  
     }
+     
+    public static Productos getProducto(int id) {  //devuelve un objeto de clase Productos
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("com.mycompany_ProductosCRUDUpdate_war_1.0-SNAPSHOTPU");
+        EntityManager manager = factory.createEntityManager();
+        String sql = "SELECT p FROM Productos p WHERE p.id=" + id;
+        Query q = manager.createQuery(sql,Productos.class); //método para consultas en SQL
+        Productos miProducto =  ( Productos ) q.getSingleResult(); //para un único registro
+        manager.close();
+        return  miProducto;
+        } 
+
+
 
     
 }

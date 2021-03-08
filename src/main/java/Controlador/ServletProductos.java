@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Pablo Flores
  */
 public class ServletProductos extends HttpServlet {
-
+    private int id;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -72,20 +72,25 @@ public class ServletProductos extends HttpServlet {
                 }
             } 
 
+            if ( op.equals("update1")) { //cuando le indicamos que vaya a actualizar
+                id = Integer.parseInt(request.getParameter("id"));
+                Productos miProducto = ProductosCRUD.getProducto(id);
+                request.setAttribute("miProducto", miProducto);
+                request.getRequestDispatcher("update.jsp").forward(request, response);
+            }
             
-            Productos miProducto = new Productos();
-            miProducto.setId(13);
-            miProducto.setNombre("Tarta de limón");
-            miProducto.setImagen("tarta.jpg");
-            miProducto.setCategoria("postres");
-            miProducto.setPrecio(6.0f);
-            ProductosCRUD.actualizaProductoConParametros(miProducto);
-            Productos prod = new Productos();
-            prod.setNombre("Tarta de fresa");
-            prod.setImagen("tartafresa.jpg");
-            prod.setCategoria("postres");
-            prod.setPrecio(8.0f);
-            //ProductosCRUD.insertaProducto(prod);
+            if ( op.equals("update2")) { //cuando le indicamos que vaya a actualizar
+                String nombre = request.getParameter("nombre");
+                String imagen = request.getParameter("imagen");
+                String categoria = request.getParameter("categoria");
+                float precio = Float.parseFloat(request.getParameter("precio"));
+                Productos miProducto = new Productos(id,nombre,imagen,categoria,precio);
+                int filas = ProductosCRUD.actualizaProducto(miProducto);
+                String mensaje ="Producto Actualizado";
+                request.setAttribute("mensaje", mensaje);
+                request.setAttribute("miProducto", miProducto);
+                request.getRequestDispatcher("update.jsp").forward(request, response);
+            }
             
             out.println("</body>");
             out.println("</html>");

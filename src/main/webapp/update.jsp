@@ -4,6 +4,7 @@
     Author     : DAW-A
 --%>
 
+<%@page import="Modelo.Productos"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -42,18 +43,36 @@
           </ul>
         </div>
       </nav>
-        
         <div id="capa">
-            <h1>Nuevo producto</h1>
-            <form action="ServletProductos?op=insert2" method="get">
-            <p><label>Nombre: <input class="form-control" type="text" name="nombre" required > </label></p>
-            <p><label>Imagen: <input class="form-control" type="text" name="imagen" required > </label></p>
-            <p><label>Categoría: <input class="form-control" type="text" name="categoria" required > </label></p>
-            <p><label>Precio: <input class="form-control" type="text" name="precio" required > </label></p>
-            <input type="hidden" name="op" required value="insert2"> 
+            <h1>Actualiza producto</h1>
+            <%
+                Productos miProducto = (Productos) request.getAttribute("miProducto");
+                String mensaje = (String) request.getAttribute("mensaje");
+                String cadena="";
+                if (mensaje!=null){
+                    cadena="<h2 id='mensaje' class='alert alert-success'>"+ mensaje +"</h2>";
+                }
+            %>
+            
+            <%= cadena %>
+
+            <form action="ServletProductos" method="get">
+            <p><label>Nombre: <input oninput="borrarMensaje()" class="form-control" value="<%= miProducto.getNombre() %>"  type="text" name="nombre" required > </label></p>
+            <p><label>Imagen: <input oninput="borrarMensaje()" class="form-control" value="<%= miProducto.getImagen() %>"  type="text" name="imagen" required > </label></p>
+            <p><label>Categoría: <input oninput="borrarMensaje()" class="form-control" value="<%= miProducto.getCategoria() %>"  type="text" name="categoria" required > </label></p>
+            <p><label>Precio: <input oninput="borrarMensaje()" class="form-control" value="<%= miProducto.getPrecio() %>"  type="text" name="precio" required > </label></p>
+            <input type="hidden" name="op" required value="update2"> 
             <input type="submit" value="insertar" >       
             </form>
+        
         </div>
+            
+            <script>
+                function borrarMensaje(){
+                    document.getElementById("mensaje").style.display="none";
+                }
+            </script>
+            
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
