@@ -4,7 +4,7 @@
     Author     : DAW-A
 --%>
 
-<%@page import="Modelo.Productos"%>
+<%@page import="Modelo.Libro"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -19,9 +19,9 @@
         </style> 
     </head>
     <body>
-        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <nav class="navbar navbar-expand-md bg-light navbar-light">
         <!-- Brand -->
-        <a class="navbar-brand" href="#">ProductosCRUPUpdate</a>
+        <a class="navbar-brand" href="#">Libros CRUD</a>
 
         <!-- Toggler/collapsibe Button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -32,21 +32,18 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="ServletProductos?op=listar">Listar productos</a>
+              <a class="nav-link" href="ServletLibros?op=listar">Listar libros</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="ServletProductos?op=insert1">Insertar productos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">TPV</a>
+              <a class="nav-link" href="ServletLibros?op=insert1">Insertar libros</a>
             </li>
           </ul>
         </div>
       </nav>
         <div id="capa">
-            <h1>Actualiza producto</h1>
+            <h1>Actualiza Libro</h1>
             <%
-                Productos miProducto = (Productos) request.getAttribute("miProducto");
+                Libro miLibro = (Libro) request.getAttribute("miLibro");
                 String mensaje = (String) request.getAttribute("mensaje");
                 String cadena="";
                 if (mensaje!=null){
@@ -56,11 +53,10 @@
             
             <%= cadena %>
 
-            <form action="ServletProductos" method="get">
-            <p><label>Nombre: <input oninput="borrarMensaje()" class="form-control" value="<%= miProducto.getNombre() %>"  type="text" name="nombre" required > </label></p>
-            <p><label>Imagen: <input oninput="borrarMensaje()" class="form-control" value="<%= miProducto.getImagen() %>"  type="text" name="imagen" required > </label></p>
-            <p><label>Categoría: <input oninput="borrarMensaje()" class="form-control" value="<%= miProducto.getCategoria() %>"  type="text" name="categoria" required > </label></p>
-            <p><label>Precio: <input oninput="borrarMensaje()" class="form-control" value="<%= miProducto.getPrecio() %>"  type="text" name="precio" required > </label></p>
+            <form action="ServletLibros" method="get">
+            <p><label>Titulo: <input oninput="borrarMensaje()" class="form-control" value="<%= miLibro.getTitulo() %>"  type="text" name="titulo" required > </label></p>
+            <p><label>Autor: <input oninput="borrarMensaje()" class="form-control" value="<%= miLibro.getAutor() %>"  type="text" name="autor" required > </label></p>
+            <p><label>Cantidad: <input oninput="borrarMensaje()" class="form-control" value="<%= miLibro.getCantidad() %>"  type="text" name="cantidad" required > </label></p>
             <input type="hidden" name="op" required value="update2"> 
             <input type="submit" value="insertar" >       
             </form>

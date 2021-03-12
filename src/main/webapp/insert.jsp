@@ -18,9 +18,9 @@
         </style> 
     </head>
     <body>
-        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <nav class="navbar navbar-expand-md bg-light navbar-light">
         <!-- Brand -->
-        <a class="navbar-brand" href="#">ProductosCRUPUpdate</a>
+        <a class="navbar-brand" href="#">Libros</a>
 
         <!-- Toggler/collapsibe Button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -31,25 +31,21 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="ServletProductos?op=listar">Listar productos</a>
+              <a class="nav-link" href="ServletLibros?op=listar">Listar libros</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="ServletProductos?op=insert1">Insertar productos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">TPV</a>
+              <a class="nav-link" href="ServletLibros?op=insert1">Insertar libros</a>
             </li>
           </ul>
         </div>
       </nav>
         
         <div id="capa">
-            <h1>Nuevo producto</h1>
-            <form action="ServletProductos?op=insert2" method="get">
-            <p><label>Nombre: <input class="form-control" type="text" name="nombre" required > </label></p>
-            <p><label>Imagen: <input class="form-control" type="text" name="imagen" required > </label></p>
-            <p><label>Categoría: <input class="form-control" type="text" name="categoria" required > </label></p>
-            <p><label>Precio: <input class="form-control" type="text" name="precio" required > </label></p>
+            <h1>Nuevo libro</h1>
+            <form action="ServletLibros?op=insert2" method="get">
+            <p><label>Titulo: <input class="form-control" type="text" name="titulo" required > </label></p>
+            <p><label>Autor: <input class="form-control" type="text" name="autor" required > </label></p>
+            <p><label>Cantidad: <input class="form-control" type="text" name="cantidad" required > </label></p>
             <input type="hidden" name="op" required value="insert2"> 
             <input type="submit" value="insertar" >       
             </form>

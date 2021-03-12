@@ -14,9 +14,9 @@
         </style> 
     </head>
     <body>
-        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <nav class="navbar navbar-expand-md bg-light navbar-light">
         <!-- Brand -->
-        <a class="navbar-brand" href="#">ProductosCRUPUpdate</a>
+        <a class="navbar-brand" href="#">libros CRUD</a>
 
         <!-- Toggler/collapsibe Button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -27,13 +27,10 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="ServletProductos?op=listar">Listar productos</a>
+              <a class="nav-link" href="ServletLibros?op=listar">Listar libros</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="ServletProductos?op=insert1">Insertar productos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">TPV</a>
+              <a class="nav-link" href="ServletLibros?op=insert1">Insertar libros</a>
             </li>
           </ul>
         </div>

@@ -5,7 +5,7 @@
 --%>
 
 <%@page import="java.util.List"%>
-<%@page import="Modelo.Productos"%>
+<%@page import="Modelo.Libro"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -21,9 +21,9 @@
         </style>      
     </head>
     <body>
-        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <nav class="navbar navbar-expand-md bg-light navbar-light">
         <!-- Brand -->
-        <a class="navbar-brand" href="#">ProductosCRUPUpdate</a>
+        <a class="navbar-brand" href="#">Libros CRUD</a>
 
         <!-- Toggler/collapsibe Button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -34,42 +34,37 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="ServletProductos?op=listar">Listar productos</a>
+              <a class="nav-link" href="ServletLibros?op=listar">Listar libros</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="ServletProductos?op=insert1">Insertar productos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">TPV</a>
+              <a class="nav-link" href="ServletLibros?op=insert1">Insertar libros</a>
             </li>
           </ul>
         </div>
       </nav>
         <div id="capa">
-            <h1>Listado de Productos</h1>
+            <h1>Listado de Libros</h1>
             <% 
-                List<Productos> misProductos = (List<Productos>) request.getAttribute("misProductos");
+                List<Libro> misLibros = (List<Libro>) request.getAttribute("misLibros");
             %>
-            <table class="table table-hover">
-                <tr>
+            <table class="table table-bordered">
+                <tr class="thead-light">
                     <th>id</th>
-                    <th>Nombre</th>
-                    <th>Imagen</th>
-                    <th>Categoria</th>
-                    <th>Precio</th>
+                    <th>Titulo</th>
+                    <th>Autor</th>
+                    <th>Cantidad</th>
                     <th>Borrar</th>
                     <th>Actualizar</th>
                 </tr>
-                <% for (Productos p: misProductos){ 
-                    String cadenaBorrar = "<a href='ServletProductos?op=borrar&id="+ p.getId() +"' onclick='return Confirmation()'><i class='fas fa-trash-alt'></i></a>";
-                    String cadenaActualizar = "<a href='ServletProductos?op=update1&id="+ p.getId() +"'><i class='fas fa-edit'></i></a>";
+                <% for (Libro l: misLibros){ 
+                    String cadenaBorrar = "<a href='ServletLibros?op=borrar&id="+ l.getId() +"' onclick='return Confirmation()'><i class='fas fa-trash-alt'></i></a>";
+                    String cadenaActualizar = "<a href='ServletLibros?op=update1&id="+ l.getId() +"'><i class='fas fa-edit'></i></a>";
                 %>
                 <tr>
-                    <td><%= p.getId() %></td>
-                    <td><%= p.getNombre() %></td>
-                    <td><%= p.getImagen() %></td>
-                    <td><%= p.getCategoria() %></td>
-                    <td><%= p.getPrecio() %></td>
+                    <td><%= l.getId() %></td>
+                    <td><%= l.getTitulo() %></td>
+                    <td><%= l.getAutor() %></td>
+                    <td><%= l.getCantidad() %></td>
                     <td><%= cadenaBorrar %></td>
                     <td><%= cadenaActualizar %></td>
                 </tr>
@@ -78,8 +73,8 @@
 
             <script type="text/javascript">
                 function Confirmation(){
-                    if (confirm('Está seguro de eliminar el producto?')==true){
-                        alert('El registro se ha sido eliminado correctamente!!!');
+                    if (confirm('Está seguro de eliminar el libro?')==true){
+                        alert('El registro ha sido eliminado correctamente!!!');
                         return true;
                     } else {
                         alert('Operación cancelada');
